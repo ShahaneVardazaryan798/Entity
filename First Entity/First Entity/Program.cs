@@ -20,26 +20,46 @@ namespace First_Entity
         }
         
     }
-     class StudentDbcontext:DbContext
+    class Teacher
     {
-       public StudentDbcontext():base(@"Data Source=localhost\SQLEXPRESS;Initial Catalog=University;Integrated Security=True")
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Category { get; set; }
+        public string CreatConnectionString(string SQLEXPRESS, string University)
         {
+            return @"Data Source=localhost\SQLEXPRESS;Initial Catalog=University;Integrated Security=True";
         }
+    }
+     class StudentDbcontext:DbContext
+     { 
+       public StudentDbcontext():base(@"Data Source=localhost\SQLEXPRESS;Initial Catalog=University;Integrated Security=True")
+       {
+
+       }
 
         public DbSet<Student> Students { get; set; }
-    }
+        public DbSet<Teacher> Teachers { get; set; }
+     }
     class Program
     {
         static void Main(string[] args)
         {
+            var stcontext = new StudentDbcontext();
             var st = new Student()
             {
                 Name = "Shahane",
                 Category="developer"
 
             };
-            var stcontext = new StudentDbcontext();
+           
             stcontext.Students.Add(st);
+
+            var tch = new Teacher()
+            {
+                Name = "Vahe",
+                Category = "developer"
+            };
+            stcontext.Teachers.Add(tch);
             stcontext.SaveChanges();
         }
     }
