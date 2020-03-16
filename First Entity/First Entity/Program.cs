@@ -16,13 +16,13 @@ namespace First_Entity
 
         public string CreatConnectionString(string SQLEXPRESS, string University)
         {
-            return $"Data Source={SQLEXPRESS};Initial Catalog={University};Integrated Security=True";
+            return @"Data Source=localhost\SQLEXPRESS;Initial Catalog=University;Integrated Security=True";
         }
         
     }
      class StudentDbcontext:DbContext
     {
-       public StudentDbcontext():base($"Data Source=SQLEXPRESS;Initial Catalog=University;Integrated Security=True")
+       public StudentDbcontext():base(@"Data Source=localhost\SQLEXPRESS;Initial Catalog=University;Integrated Security=True")
         {
         }
 
